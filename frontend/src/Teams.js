@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from "react-router-dom";
+
 
 function Teams(){
     const [teams, setTeams] = useState([])
@@ -11,7 +13,9 @@ function Teams(){
 
     const displayTeams = teams.map(t =>{
             return(
-                <h3 key={t.id}>{t.team}</h3>
+                <nav>
+                    <NavLink to='/teams/${id}' key={t.id}>{t.team}</NavLink>
+                </nav>
             )
         })
 
