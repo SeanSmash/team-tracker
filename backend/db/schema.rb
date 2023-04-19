@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_19_020741) do
+ActiveRecord::Schema.define(version: 2023_04_19_021541) do
 
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.integer "jersey_number"
+    t.integer "team_id"
   end
 
   create_table "statuses", force: :cascade do |t|
