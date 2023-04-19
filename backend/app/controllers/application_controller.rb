@@ -8,6 +8,14 @@ class ApplicationController < Sinatra::Base
   #   { message: "Good luck with your project!" }.to_json
   # end
 
-  
+  get "/teams" do
+    teams = Team.all
+    teams.to_json
+  end
+
+  get "/players" do
+    players = Player.all
+    players.to_json
+  end
 
 end
