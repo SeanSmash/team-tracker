@@ -6,8 +6,19 @@ import Players from './Players';
 
 function App() {
 
+    function nav(){
+        return(
+            <>
+                <NavLink to="/">Home</NavLink><br />
+                <NavLink to="/teams">Teams</NavLink><br />
+                <NavLink to="/players">Players</NavLink>
+            </>
+        )
+    }
+
   return (
     <main>
+        {nav()}
       <header>
       <h1 className='title'>Team Tracker</h1>
       </header>
