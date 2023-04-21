@@ -96,6 +96,12 @@ Player.create(team_5_midfield)
 Player.create(team_5_defense)
 Player.create(team_5_goalkeeper)
 
+def statusMake
+    "test"
+end
+
+statusMake()
+
 PlayerStatus.create([
     {player_id: 1, status_id: 1},
     {player_id: 1, status_id: 3},

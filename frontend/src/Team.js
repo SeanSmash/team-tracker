@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Player from "./Player";
 
 function Team(){
+    const [team, setTeam] = useState('')
     const [players, setPlayers] = useState([])
     const params = useParams()
 
     useEffect(() => {
         fetch(`http://localhost:9292/teams/${params.id}`)
         .then((r) => r.json())
-        .then((data) => setPlayers(data))
+        .then((data) => {
+            setTeam(data.team)
+            setPlayers(data.players)
+        })
     }, [])
 
     function playerTable(){
@@ -20,29 +25,19 @@ function Team(){
                     <th>Last Name</th>
                     <th>Number</th>
                     <th>Position</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                {displayPlayers}
+                <Player players={players}/>
             </tbody>
         </table>
         )
     }
-    
-    const displayPlayers = players.map(p =>{
-        return(
-            <tr key={p.id}>
-                <td>{p.first_name}</td>
-                <td>{p.last_name}</td>
-                <td>{p.jersey_number}</td>
-                <td>{p.position}</td>
-            </tr>
-        )
-    })
 
     return(
         <>
-        <h1>Team name</h1>
+        <h1>{team}</h1>
         {playerTable()}
         </>
     )

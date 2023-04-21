@@ -13,8 +13,8 @@ function Teams(){
 
     const displayTeams = teams.map(t =>{
             return(
-                <nav>
-                    <Link to={`/teams/${t.id}`} key={t.id} >{t.team}</Link>
+                <nav key={t.id}>
+                    <Link to={`/teams/${t.id}`} >{t.team}</Link>
                 </nav>
             )
         })
