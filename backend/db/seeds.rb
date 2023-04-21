@@ -16,8 +16,8 @@ Team.create([
 Status.create([
     {status: "starter"},
     {status: "back up"},
-    {status: "injured"},
     {status: "healthy"},
+    {status: "injured"},
     {status: "unassigned"}
 ])
 
@@ -96,18 +96,41 @@ Player.create(team_5_midfield)
 Player.create(team_5_defense)
 Player.create(team_5_goalkeeper)
 
-def statusMake
-    "test"
+#seed PlayerStatus
+def starter_healthy(i)
+    PlayerStatus.create([{player_id: i, status_id: 1}])
+    PlayerStatus.create([{player_id: i, status_id: 3}]) 
 end
 
-statusMake()
+def backup_healthy(i)
+    PlayerStatus.create([{player_id: i, status_id: 2}])
+    PlayerStatus.create([{player_id: i, status_id: 3}]) 
+end
 
-PlayerStatus.create([
-    {player_id: 1, status_id: 1},
-    {player_id: 1, status_id: 3},
-    {player_id: 2, status_id: 2},
-    {player_id: 2, status_id: 4}
-])
+def backup_injured(i)
+    PlayerStatus.create([{player_id: i, status_id: 2}])
+    PlayerStatus.create([{player_id: i, status_id: 4}]) 
+end
+
+def team_status(n)
+    (n..n+2).each{|i| starter_healthy(i)}
+    (n+3..n+4).each{|i| backup_healthy(i)}
+    backup_injured(n+5)
+    (n+6..n+9).each{|i| starter_healthy(i)}
+    (n+10..n+11).each{|i| backup_healthy(i)}
+    (n+12..n+13).each{|i| backup_injured(i)}
+    (n+14..n+16).each{|i| starter_healthy(i)}
+    (n+17..n+18).each{|i| backup_healthy(i)}
+    backup_injured(n+19)
+    starter_healthy(n+20)
+    backup_healthy(n+21)
+end
+
+team_status(1)
+team_status(23)
+team_status(45)
+team_status(67)
+team_status(89)
 
 
 
