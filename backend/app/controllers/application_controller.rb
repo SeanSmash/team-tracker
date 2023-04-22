@@ -22,6 +22,11 @@ class ApplicationController < Sinatra::Base
     team.to_json
   end
 
+  get "/statuses" do
+    statuses = Status.all
+    statuses.to_json
+  end
+
   get "/players" do
     team = Team.all
     team.to_json(include: {
@@ -34,6 +39,17 @@ class ApplicationController < Sinatra::Base
   get "/players/:id" do
     player = Player.find_by(id: params[:id])
     player.to_json(include: :status)
+  end
+
+  patch "/players/:id" do
+    player = Player.find_by(id: params[:id])
+    player.update(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      jersey_number: params[:jersey_number],
+      position: params[:position]
+    )
+    player.to_json
   end
 
 end

@@ -148,6 +148,7 @@ team_status(45)
 team_status(67)
 team_status(89)
 (111..130).each{|i| PlayerStatus.create([{player_id: i, status_id: 5}])}
+(111..130).each{|i| PlayerStatus.create([{player_id: i, status_id: 3}])}
 
 
 
