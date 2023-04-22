@@ -18,8 +18,8 @@ class ApplicationController < Sinatra::Base
   end
   
   get "/teams" do
-    teams = Team.all
-    teams.to_json
+    team = Team.all
+    team.to_json
   end
 
   get "/players" do
@@ -29,6 +29,11 @@ class ApplicationController < Sinatra::Base
             include: :status
             }
         })
+  end
+
+  get "/players/:id" do
+    player = Player.find_by(id: params[:id])
+    player.to_json(include: :status)
   end
 
 end

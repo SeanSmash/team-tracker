@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Player from './Player'
 
 function Players(){
     const [teams, setTeams] = useState([])
@@ -8,31 +9,13 @@ function Players(){
         .then((resp) => resp.json())
         .then((data) => setTeams(data))
     }, [])
-
-    function statusDisplay(statusArray){
-        const statusJoin = []
-        statusArray.map(s =>{
-            statusJoin.push(s.status)
-        })
-        
-        return(
-            <td>{statusJoin.toString()}</td>
-        )
-    }
-    
+ 
     const displayTeams = teams.map(t =>{
         return(
             <>
             {t.players.map(p =>{
                 return(
-                    <tr key={p.id}>
-                        <td>{t.team}</td>
-                        <td>{p.first_name}</td>
-                        <td>{p.last_name}</td>
-                        <td>{p.jersey_number}</td>
-                        <td>{p.position}</td>
-                        {statusDisplay(p.status)}
-                    </tr>
+                    <Player p={p} teamName={t.team} teamId={t.id} />
                 )
             })}
             </>
@@ -68,4 +51,3 @@ function Players(){
 }
 
 export default Players
-

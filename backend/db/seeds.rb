@@ -96,6 +96,22 @@ Player.create(team_5_midfield)
 Player.create(team_5_defense)
 Player.create(team_5_goalkeeper)
 
+# unassigned
+# team 5
+unassigned_offense = []
+5.times{unassigned_offense.push({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, jersey_number: rand(1..99), team_id: 6, position: "forward"})}
+unassigned_midfield = []
+5.times{unassigned_midfield.push({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, jersey_number: rand(1..99), team_id: 6, position: "midfield"})}
+unassigned_defense = []
+5.times{unassigned_defense.push({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, jersey_number: rand(1..99), team_id: 6, position: "defense"})}
+unassigned_goalkeeper = []
+5.times{unassigned_goalkeeper.push({first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, jersey_number: rand(1..99), team_id: 6, position: "goalkeeper"})}
+
+Player.create(unassigned_offense)
+Player.create(unassigned_midfield)
+Player.create(unassigned_defense)
+Player.create(unassigned_goalkeeper)
+
 #seed PlayerStatus
 def starter_healthy(i)
     PlayerStatus.create([{player_id: i, status_id: 1}])
@@ -131,6 +147,7 @@ team_status(23)
 team_status(45)
 team_status(67)
 team_status(89)
+(111..130).each{|i| PlayerStatus.create([{player_id: i, status_id: 5}])}
 
 
 

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Player from "./Player";
 
 function Team(){
-    const [team, setTeam] = useState('')
+    const [team, setTeam] = useState([])
     const [players, setPlayers] = useState([])
     const params = useParams()
 
@@ -11,16 +11,17 @@ function Team(){
         fetch(`http://localhost:9292/teams/${params.id}`)
         .then((r) => r.json())
         .then((data) => {
-            setTeam(data.team)
+            setTeam(data)
             setPlayers(data.players)
         })
     }, [])
-
+    
     function playerTable(){
         return(
             <table>
             <thead>
                 <tr>
+                    <th>Team</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Number</th>
@@ -29,7 +30,11 @@ function Team(){
                 </tr>
             </thead>
             <tbody>
-                <Player players={players}/>
+                {players.map(p =>{
+                    return(
+                        <Player p={p} teamName={team.team} teamId={team.id} />
+                    )
+                })}
             </tbody>
         </table>
         )
@@ -37,7 +42,7 @@ function Team(){
 
     return(
         <>
-        <h1>{team}</h1>
+        <h1>{team.team}</h1>
         {playerTable()}
         </>
     )
